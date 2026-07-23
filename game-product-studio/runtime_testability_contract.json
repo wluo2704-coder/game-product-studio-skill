@@ -1,0 +1,14 @@
+# QA Gate Report
+
+- Master spec version:
+- Candidate buildId:
+- QA GM access report and allowlist version:
+- Trace / test IDs:
+- Direct-scene coverage (command, scene, state, reset result, evidence):
+- Runtime-state evidence:
+- Visual evidence:
+- Console/log evidence:
+- Structural evidence:
+- In-scope failures:
+- NOT TESTED:
+- QA_GATE: `PASS / FAIL / BLOCKED / NOT TESTED`

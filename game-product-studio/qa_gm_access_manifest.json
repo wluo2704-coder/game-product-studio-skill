@@ -1,0 +1,60 @@
+# Master Game Design Specification
+
+- Version:
+- State: `DRAFT / AWAITING_CONFIRMATION / CONFIRMED / REVISE / BLOCKED`
+- Source Vibe Brief:
+- User confirmation date / wording:
+
+## 1. Player promise
+
+- One-line game:
+- Intended player experience:
+- References and boundaries (what is borrowed, what is not):
+
+## 2. Confirmed core loop
+
+| Link | Description | Requirement ID | Status | Source |
+| --- | --- | --- | --- | --- |
+| Player action |  | `MASTER-LOOP-001` | confirmed / suggested / undecided |  |
+| Game response |  | `MASTER-LOOP-002` |  |  |
+| Repeated decision |  | `MASTER-LOOP-003` |  |  |
+| Observable result |  | `MASTER-LOOP-004` |  |  |
+
+- Success / failure state:
+- First-playable non-negotiable:
+
+## 3. First-playable scope
+
+| In scope | Explicitly out of scope | Deferred decision |
+| --- | --- | --- |
+|  |  |  |
+
+## 4. Experience and scene flow
+
+`entry -> first action -> response -> decision -> result -> replay/exit`
+
+| Scene/state ID | Player purpose | Required feedback | Linked requirement |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+## 5. Requirements and assumptions
+
+| Requirement ID | Statement | Status | Evidence / source | Acceptance direction |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+| Assumption or risk | Smallest experiment | Outcome | Decision |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+## 6. Module branches
+
+| Module | Pinned master version | Trace IDs | Owner / handoff | Status |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## 7. Confirmation summary
+
+- Summary shown to player:
+- Player corrections:
+- Explicit confirmation:

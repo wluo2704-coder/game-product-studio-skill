@@ -1,0 +1,19 @@
+{
+  "candidateBuildId": "REPLACE_WITH_FROZEN_BUILD_ID",
+  "masterSpecVersion": "REPLACE_WITH_CONFIRMED_MASTER_VERSION",
+  "testScenarioIds": ["TEST-CORE-001"],
+  "scenes": [
+    {"sceneId": "REPLACE_WITH_SCENE_ID", "stateId": "REPLACE_WITH_ENTRY_STATE", "baselineId": "REPLACE_WITH_RESET_BASELINE"}
+  ],
+  "gate": "QA_GM_ACCESS: PASS",
+  "owner": "Lead",
+  "runtimeScope": "QA_TEST_ONLY",
+  "deliveryDefault": "DISABLED",
+  "commands": [
+    {"name": "load_scene", "allowedParameters": ["sceneId"]},
+    {"name": "set_test_state", "allowedParameters": ["stateId"]},
+    {"name": "grant_test_resource", "allowedParameters": ["resourceId", "amount"]},
+    {"name": "reset_run", "allowedParameters": []}
+  ],
+  "auditLogPath": "05_validation/QA/gm_access/invocation_log.jsonl"
+}

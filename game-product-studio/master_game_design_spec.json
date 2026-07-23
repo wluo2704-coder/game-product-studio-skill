@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Product Studio"
+  short_description: "Confirm game specs and build testable MVPs"
+  default_prompt: "Use $game-product-studio to turn my game idea into a confirmed, testable MVP plan."
