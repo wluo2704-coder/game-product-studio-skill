@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Product Studio"
+  short_description: "Interview and launch governed game MVP workspaces"
+  default_prompt: "Use $game-product-studio to turn my game idea into a confirmed, governed MVP workspace."
