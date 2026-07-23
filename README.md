@@ -1,140 +1,183 @@
 # Game Product Studio
 
-**Version: v0.2.1**
+Turn a vague game idea into a player-confirmed, testable first playable — from core-loop discovery through a master game design specification, traceable module specs, vertical-slice proof, and governed multi-agent delivery.
 
-A Codex Skill for turning vague game ideas into confirmed core gameplay loops, then guiding a controlled and recoverable multi-agent MVP workflow.
+> Version: v0.3.0
 
 ## What it does
 
-- Helps users clarify the core gameplay loop before discussing implementation details, engines, or Agent features.
-- Separates reference games, candidate features, game-internal Agents, and development collaboration roles.
-- Uses one user-facing Lead to integrate source, configuration, Candidate artifacts, and formal delivery.
-- Supports Prototype, Agent-MVP, Standard, Studio, and Takeover collaboration modes.
-- Lets QA directly reach in-scope scenes through a Lead-owned, Candidate-bound GM command allowlist.
-- Requires Candidate, QA, Reflection, and recovery evidence before delivery.
+Game Product Studio is a Codex Skill for personal game vibecoding. It helps turn “I want to make a game like…” into a concrete, user-confirmed product direction before agents begin broad implementation.
 
-## Core gameplay-loop rule
+It is designed for a personal playable MVP, not an automatic commercial-game factory.
 
-The Skill establishes this minimum chain before implementation:
+- Uses one plain-language, adaptive discovery conversation to find the player’s actual core loop.
+- Separates references, desired features, core-loop evidence, and game-internal Agent ideas.
+- Compiles the confirmed result into a versioned Master Game Design Specification.
+- Branches only needed module specs — combat, systems, balance, content, UI/scene flow, Agent features, art/audio, or technical testability.
+- Makes every module requirement traceable to a master requirement and test/acceptance ID.
+- Requires a runnable core-loop vertical slice before broad production.
+- Creates a runtime testability contract for scenes, states, actions, reset baselines, state snapshots, timing, and evidence.
+- Coordinates a bounded Lead / specialist / QA / Reflection workflow with Candidate and same-build gates.
+
+## The workflow
 
 ```text
-player action → game response → player decision → observable result
-A reference game or a request such as “add an Agent” is not automatically the core loop. The user must confirm the complete Vibe-to-Build Brief before the workflow moves to implementation.
-Controlled Agent collaboration
-Development roles
-Role	Responsibility
-Lead	Only user-facing voice; sole owner of integrated source, configuration, Candidate, and formal delivery
-Prototype Architect	Plans small core-loop experiments
-Product-Agent Designer	Specifies a confirmed game-internal Agent feature
-QA	Verifies runtime behavior and evidence
-Reflection	Independently verifies player-promise and experience fit
+Vague idea
+  -> Discovery Lead conversation
+  -> Confirmed Vibe Brief                 (VIBE_GATE)
+  -> Confirmed Master Game Design Spec    (MASTER_SPEC_GATE)
+  -> Engine and presentation decision     (ENGINE_DECISION)
+  -> Traceable module-spec graph          (SPEC_GRAPH_GATE)
+  -> Runnable core-loop vertical slice    (SLICE_GATE)
+  -> Runtime testability contract          (TESTABILITY_GATE)
+  -> Bounded collaboration plan
+  -> Frozen Candidate
+  -> QA GM / QA / Reflection on one build
+  -> Personal playable delivery
+```
 
-Game-internal Agent vs. development Agent
-A game-internal Agent is a possible product feature for players.
-Development roles are collaborators used to build and validate the game.
-They are separate concepts and must never be confused.
-QA direct-scene GM access
-When QA needs to test a Boss scene or another specific scene directly, the Lead provides a controlled GM command surface inside the frozen Candidate.
-Lead creates and owns GM allowlist
-→ Candidate is frozen with a buildId
-→ QA invokes approved runtime commands
-→ QA records scene and command evidence
-→ QA resets the test state
-→ QA and Reflection validate the same buildId
-QA may
-Invoke only Lead-provided, Candidate-bound GM commands.
-Load approved in-scope scenes.
-Apply predefined test fixtures or test resources.
-Reset the run to a known baseline.
-Capture screenshots, recordings, logs, defects, and evidence.
-QA may not
-Modify source code, configuration, assets, gameplay values, saves, or Candidate files.
-Add or extend GM commands.
-Run arbitrary code, scripts, shell commands, file operations, or network calls.
-Change acceptance criteria.
-Use a GM surface that is not bound to the frozen Candidate buildId.
-Minimum GM allowlist
-Command	Purpose
-load_scene	Open an approved in-scope scene
-set_test_state	Apply a predefined test fixture
-grant_test_resource	Grant a predefined test resource
-reset_run	Restore the known baseline
+## The design source of truth
 
-All GM invocations must record:
-time / buildId / QA identity / command / parameters / result / evidence path
-The GM surface is enabled only for QA testing and is disabled by default for formal delivery.
-Delivery gates
-VIBE_GATE
-→ ENGINE_DECISION
-→ COLLABORATION_GATE
-→ CANDIDATE
-→ QA_GM_ACCESS_GATE (when direct-scene testing is in scope)
-→ QA_GATE + REFLECTION_GATE
-→ DELIVERY
-VIBE_GATE: the user confirms the core gameplay Brief.
-ENGINE_DECISION: presentation and engine are confirmed before engine initialization.
-CANDIDATE: the Lead freezes a build identity.
-QA_GM_ACCESS_GATE: the Lead-provided GM manifest is bound to the Candidate buildId and passes validation.
-QA_GATE: runtime and structural evidence pass.
-REFLECTION_GATE: player promise and experience claims pass.
-QA, Reflection, and GM access evidence must reference the same Candidate buildId.
-Install in Codex
-Copy or symlink the game-product-studio folder into your Codex Skills directory.
-Windows
-Copy-Item -Recurse .\game-product-studio "$HOME\.codex\skills\game-product-studio"
-Restart or reload Codex after installation.
-Project-local installation
-You can also place the Skill inside a project:
-your-project/
-└── .agents/
-    └── skills/
-        └── game-product-studio/
-Use
-Use $game-product-studio to help me turn my game idea into a confirmed MVP plan.
-Example:
-I want to make a game like Plants vs. Zombies, but with an Agent feature.
-The Skill first clarifies what the player repeatedly does, sees, and decides. It returns to the Agent idea only after the core loop is clear.
-Package contents
-Path	Purpose
-SKILL.md	Main workflow, collaboration rules, and safety boundaries
-agents/openai.yaml	Codex display metadata
-references/	Discovery, classification, implementation, collaboration, recovery, and QA GM rules
-references/qa-gm-access-contract.md	Lead-owned QA GM access rules
-assets/project-templates/	Brief, Agent spec, collaboration, QA, Reflection, and recovery templates
-assets/project-templates/qa_gm_access_manifest.json	Candidate-bound QA GM allowlist template
-scripts/validate_vibe_brief.py	Validates a confirmed Vibe-to-Build Brief
-scripts/bootstrap_project.py	Creates a governed, engine-neutral workspace
-scripts/generate_role_packets.py	Generates manual role startup packets without creating tasks
-scripts/generate_build_identity.py	Creates a frozen Candidate build identity
-scripts/validate_qa_gm_access.py	Validates QA GM access scope and Candidate build binding
-scripts/validate_delivery_gates.py	Validates same-build QA, Reflection, and GM evidence
-scripts/quick_validate.py	Validates Skill metadata frontmatter
+After discovery, the Lead creates both a human-readable and a machine-readable master spec:
 
-Validation
-Run the dependency-free structural check:
-python .\game-product-studio\scripts\validate_package_structure.py .\game-product-studio
-Expected result:
-PACKAGE_STRUCTURE_VALIDATION=PASS
-Validate Skill frontmatter:
-$env:PYTHONUTF8 = "1"
-python .\game-product-studio\scripts\quick_validate.py .\game-product-studio
-Expected result:
-Skill is valid!
-quick_validate.py requires PyYAML. Prefer an isolated Python environment; do not install dependencies globally unless you explicitly choose to.
-Safety boundaries
-The user remains the decision-maker for game direction, scope, engine, model provider, credentials, and release.
-The Skill does not initialize an engine before Brief and engine confirmation.
-The Skill does not automatically create long-lived tasks, install dependencies, create keys, publish projects, or change accounts or networking.
-Lead is the only integrated source and Candidate writer.
-QA and Reflection are read-only.
-Runtime-relevant changes invalidate earlier QA and Reflection evidence.
-License
-This project is released under the MIT License.
-Contributing
-Issues and pull requests are welcome.
-When contributing:
-Preserve the core-loop-first rule.
-Keep game-internal Agent features separate from development collaboration roles.
-Keep QA GM access Lead-owned, Candidate-bound, allowlisted, logged, resettable, and disabled by default for delivery.
-Do not add automatic installation, credential, publishing, or task-creation behavior without explicit user authorization.
-Include validation evidence for script changes.
+```text
+master_game_design_spec.md
+master_game_design_spec.json
+  -> spec_graph.json
+      -> module design specs
+      -> acceptance and test IDs
+      -> runtime_testability_contract.json
+      -> QA-only GM access manifest
+```
+
+The master spec contains the player promise, core loop, first-playable boundary, scene/experience flow, requirements, assumptions, deferred decisions, and user confirmation.
+
+Child module specs refine implementation detail. They cannot silently change the core loop or MVP scope. A direction change requires a logged, user-confirmed new master-spec version; affected modules, test scenarios, QA GM manifests, and runtime evidence then become stale.
+
+## Core-loop-first discovery
+
+The Skill asks at most 15 user-visible questions and only one at a time. It first clarifies what the player repeatedly does and sees:
+
+```text
+player action -> game response -> player decision -> observable result
+```
+
+A reference game is not automatically a loop. “Add an Agent” is not automatically a loop either. The Lead records both, but first confirms where an Agent feature serves the player’s already-confirmed game loop.
+
+Before implementation starts, the Skill presents a full summary and waits for explicit user confirmation.
+
+## Vertical slice and testability
+
+Before broad module work, the Skill requires a real, smallest traversal of the core loop. Each critical scenario records:
+
+- stable `sceneId` and entry `stateId`;
+- player/test action and expected response;
+- observable result and assertions;
+- `reset_run` baseline;
+- runtime-state, visual, and console/log evidence;
+- retain, revise, or stop decision.
+
+The intended operating rhythm is deliberately short:
+
+```text
+make one bounded change -> run -> observe -> adjust
+```
+
+For browser games, expose `window.advanceTime(ms)` and `window.render_game_to_text()` where practical. Other engines should provide a small documented equivalent through a QA-only test adapter. Launching a game or loading a scene is not sufficient evidence that the interaction works.
+
+## Controlled QA GM access
+
+The GM surface is not a separate product owner or a development role. The integration Lead owns it; QA may only invoke a frozen Candidate’s runtime-only allowlist.
+
+Allowed examples:
+
+- `load_scene(sceneId)` for an in-scope test scene;
+- `set_test_state(stateId)` for a predefined fixture;
+- `grant_test_resource(resourceId, amount)` for a predefined test resource;
+- `reset_run()` for the declared baseline.
+
+The allowlist is derived from `runtime_testability_contract.json`, bound to one Candidate build ID, logged, and disabled by default in delivery builds. QA cannot modify gameplay values, acceptance criteria, source, assets, configuration, saves, files, network state, or run arbitrary code/scripts/commands.
+
+## Collaboration model
+
+The Lead is the only writer of source, configuration, Candidate, and formal delivery. All other roles have bounded outputs and must hand back trace IDs, evidence, assumptions, and `NOT TESTED` items.
+
+| Mode | Typical roles |
+| --- | --- |
+| Single | Lead, QA, Reflection |
+| Prototype | Lead, Prototype Architect, QA, Reflection |
+| Agent MVP | Prototype roles plus Product-Agent Designer |
+| Standard / Studio | Add Design, Art, Technical, Audio, or Release only when needed |
+
+The Skill generates manual startup packets by default. It never creates long-lived tasks unless the user explicitly authorizes it.
+
+## Install
+
+### From this repository
+
+1. Download or clone this repository.
+2. Locate the `game-product-studio/` directory from the release package.
+3. Install it into your Codex Skills location using your normal Codex Skill installation workflow, or copy the directory into a user-approved local Skills directory.
+4. Restart or refresh Codex if your environment requires it.
+
+Do not copy `README.md`, release notes, or archives into the Skill directory. The package itself starts at `game-product-studio/SKILL.md`.
+
+### Validate the package
+
+```powershell
+python scripts/validate_package_structure.py .
+python scripts/quick_validate.py .
+```
+
+`quick_validate.py` needs PyYAML. Use an already-approved isolated Python environment if it is not installed; do not globally install dependencies merely to validate the Skill.
+
+## Quick start
+
+```text
+Use $game-product-studio to help me turn this game idea into a first playable:
+I want a game where I draw creatures that then fight for me.
+```
+
+The Skill will guide the discovery conversation, summarize the confirmed Vibe Brief, compile and ask confirmation for the Master Spec, then move through engine choice, vertical slice, testability, and controlled implementation.
+
+## Included package layout
+
+```text
+game-product-studio/
+├── SKILL.md
+├── agents/openai.yaml
+├── assets/project-templates/
+│   ├── master_game_design_spec.md / .json
+│   ├── module_design_spec.md
+│   ├── spec_graph.json
+│   ├── vertical_slice_gate.json
+│   ├── runtime_testability_contract.json
+│   └── qa_gm_access_manifest.json
+├── references/
+│   ├── master-design-and-spec-graph.md
+│   ├── vertical-slice-and-testability.md
+│   └── qa-gm-access-contract.md
+└── scripts/
+    ├── bootstrap_project.py
+    ├── validate_master_spec.py
+    ├── validate_spec_graph.py
+    ├── validate_vertical_slice.py
+    ├── validate_runtime_testability.py
+    ├── validate_qa_gm_access.py
+    └── validate_delivery_gates.py
+```
+
+## Safety and scope
+
+- No engine project is initialized before confirmed Vibe Brief, Master Spec, engine, and presentation decisions.
+- No global installs, API keys, account/network changes, external publishing, or writes outside the approved root happen without explicit authorization.
+- Game-internal Agent features remain optional and require player value, trigger, override, and fallback.
+- Online services, monetization, analytics, live operations, multiplayer, and public release are out of scope unless the user explicitly requests them.
+
+## Version notes
+
+See [UPDATE_NOTES_v0.3.md](UPDATE_NOTES_v0.3.md) for the v0.3.0 changes and migration notes from v0.2.1.
+
+## License
+
+See [LICENSE](LICENSE).
