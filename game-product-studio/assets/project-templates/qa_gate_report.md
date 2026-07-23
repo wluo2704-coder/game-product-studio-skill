@@ -1,6 +1,8 @@
 # QA Gate Report
 
 - Candidate buildId:
+- QA GM access report and allowlist version:
+- Direct-scene coverage (command, scene, reset result, evidence):
 - Runtime evidence:
 - Structural evidence:
 - In-scope failures:

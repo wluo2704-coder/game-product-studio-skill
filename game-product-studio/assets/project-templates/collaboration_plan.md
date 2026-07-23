@@ -18,6 +18,17 @@
 | --- | --- | --- | --- | --- | --- |
 | Lead | required |  | source/config/Candidate/formal delivery | external actions without authorization | QA / Reflection |
 
+## QA GM access (when direct-scene testing is in scope)
+
+- Lead owner:
+- Candidate buildId:
+- Allowed commands and parameter allowlists:
+- In-scope scene IDs / test fixtures:
+- Invocation log path:
+- Reset command and baseline:
+- Delivery default: `DISABLED`
+- QA limitation: runtime invocation only; no source/config/file/network/arbitrary-code access.
+
 ## Invalidation and recovery
 
 - Candidate-changing inputs:

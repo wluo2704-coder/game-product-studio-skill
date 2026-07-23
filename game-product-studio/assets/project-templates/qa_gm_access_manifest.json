@@ -1,0 +1,14 @@
+{
+  "candidateBuildId": "REPLACE_WITH_FROZEN_BUILD_ID",
+  "gate": "QA_GM_ACCESS: PASS",
+  "owner": "Lead",
+  "runtimeScope": "QA_TEST_ONLY",
+  "deliveryDefault": "DISABLED",
+  "commands": [
+    {"name": "load_scene", "allowedParameters": ["sceneId"]},
+    {"name": "set_test_state", "allowedParameters": ["stateId"]},
+    {"name": "grant_test_resource", "allowedParameters": ["resourceId", "amount"]},
+    {"name": "reset_run", "allowedParameters": []}
+  ],
+  "auditLogPath": "05_validation/QA/gm_access/invocation_log.jsonl"
+}

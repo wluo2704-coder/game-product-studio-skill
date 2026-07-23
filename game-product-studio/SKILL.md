@@ -14,6 +14,7 @@ Turn a personal game idea into a confirmed first-playable hypothesis and a gover
 - Do not create a long-lived task, install globally, install dependencies, create a key, publish, change accounts/networking, or write outside the approved root without explicit authorization.
 - Treat a **game-internal Agent** as a product feature, not as a development collaborator. Treat Codex collaborators as development roles, not as in-game features.
 - The integration Lead is the only writer of game source, configuration, Candidate, and formal delivery. QA and Reflection are read-only.
+- For direct-scene testing, the Lead provides a candidate-bound, QA-only GM allowlist. QA may invoke it only at runtime; it never grants source, configuration, file, network, or arbitrary-code access.
 - Treat `NOT TESTED` as unverified. QA and Reflection PASS must name the same frozen buildId; runtime-relevant changes invalidate both.
 
 ## 1. Discover the game with one user-facing voice
@@ -54,6 +55,10 @@ Write `collaboration_plan.md` before role packets. Use only independently testab
 
 Long-lived roles need explicit user authorization and available task creation. Otherwise generate manual startup packets. Lead remains sole integrator.
 
+For QA that must reach a scene directly, read [qa-gm-access-contract.md](references/qa-gm-access-contract.md). After Candidate freeze, Lead creates the bundled `qa_gm_access_manifest.json` from its template and QA validates it with `scripts/validate_qa_gm_access.py`. The GM surface must be test-only, candidate-bound, logged, resettable, and disabled by default for delivery.
+
+Do not introduce a separate "GM" or "product owner" role for this access. The Lead alone owns the GM surface. Before QA starts a direct-scene test, it must receive: the frozen Candidate buildId, `qa_gm_access_manifest.json`, the in-scope scene/fixture list, and the reset baseline. QA may only invoke the listed commands and return command/scene/reset evidence; it cannot alter acceptance criteria, gameplay values, source, assets, configuration, saves, or Candidate files.
+
 ## 4. Bootstrap a governed workspace
 
 After Brief, engine, collaboration plan, and output root are confirmed, use the bundled scripts:
@@ -72,7 +77,8 @@ For a package metadata check, run `scripts/quick_validate.py <skill-folder>`. It
 1. Confirm Vibe Brief, implementation decisions, and collaboration plan.
 2. Let bounded roles deliver inbound artifacts; Lead integrates.
 3. Freeze Candidate and create buildId.
-4. QA verifies runtime facts; Reflection verifies Brief promise and experience claims.
-5. Deliver only when both gates PASS on that buildId.
+4. Lead exposes the frozen Candidate's QA GM allowlist when direct-scene coverage is in scope; QA verifies runtime facts through it and records command/scene evidence.
+5. Reflection verifies Brief promise and experience claims.
+6. Deliver only when GM access (when in scope), QA, and Reflection PASS on that buildId.
 
 For recovery read task card → progress recap → execution log → confirmed briefs/decisions → Candidate/evidence. Read [recovery-and-invalidation.md](references/recovery-and-invalidation.md) when a decision or runtime artifact changes.

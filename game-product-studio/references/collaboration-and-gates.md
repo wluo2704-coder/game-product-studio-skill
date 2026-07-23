@@ -6,7 +6,8 @@
 2. `ENGINE_DECISION`: presentation and engine are explicitly confirmed before any engine initialization.
 3. `COLLABORATION_GATE`: a written collaboration plan names only the roles needed for independent, testable work.
 4. `CANDIDATE`: the Lead freezes a manifest after integration.
-5. `QA_GATE` and `REFLECTION_GATE`: both cite the same manifest buildId.
+5. `QA_GM_ACCESS_GATE`: when direct-scene coverage is in scope, Lead provides the frozen Candidate's test-only, logged GM allowlist and QA validates it.
+6. `QA_GATE` and `REFLECTION_GATE`: both cite the same manifest buildId.
 
 ## Agent distinction
 

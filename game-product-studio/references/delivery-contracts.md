@@ -6,7 +6,7 @@ Include the role goal, current SOT, inputs, allowed output directory, forbidden 
 
 ## QA report required fields
 
-Include candidate absolute path, version/buildId, manifest path, scope, evidence, coverage matrix, `PASS | FAIL | BLOCKED | NOT TESTED`, defects, and next action. QA cannot modify candidate files.
+Include candidate absolute path, version/buildId, manifest path, scope, evidence, coverage matrix, GM access report, command/scene/reset log, `PASS | FAIL | BLOCKED | NOT TESTED`, defects, and next action. QA cannot modify candidate files; its only runtime control is the Lead-provided allowlist.
 
 ## Reflection report required fields
 

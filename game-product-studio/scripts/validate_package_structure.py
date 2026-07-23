@@ -14,7 +14,7 @@ REQUIRED = (
     "assets/project-templates/product_agent_spec.md", "assets/project-templates/collaboration_plan.md",
     "scripts/validate_vibe_brief.py", "scripts/bootstrap_project.py",
     "scripts/generate_role_packets.py", "scripts/generate_build_identity.py",
-    "scripts/validate_delivery_gates.py", "scripts/quick_validate.py",
+    "scripts/validate_delivery_gates.py", "scripts/validate_qa_gm_access.py", "scripts/quick_validate.py",
 )
 
 

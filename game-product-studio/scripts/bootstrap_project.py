@@ -74,7 +74,7 @@ def main() -> int:
 
     engine_state = "CONFIRMED" if args.engine != "unconfirmed" and args.engine_confirmed else "BLOCKED"
     now = datetime.now(timezone.utc).isoformat()
-    for relative in ("00_admin", "01_product", "02_design", "03_art_content", "04_implementation", "05_validation/QA", "05_validation/Reflection", "06_candidates", "07_delivery", "role_startup_packets"):
+    for relative in ("00_admin", "01_product", "02_design", "03_art_content", "04_implementation", "05_validation/QA/gm_access", "05_validation/Reflection", "06_candidates", "07_delivery", "role_startup_packets"):
         (project / relative).mkdir(parents=True, exist_ok=True)
 
     write(project / "01_product/vibe_to_build_brief.json", json.dumps(brief, ensure_ascii=False, indent=2) + "\n")
@@ -82,7 +82,7 @@ def main() -> int:
     write(project / "01_product/product_brief.md", "# Product Brief\n\nVIBE_GATE: PASS\n\n| Field | Value | Status |\n| --- | --- | --- |\n" + rows + "\n")
     write(project / "01_product/engine_decision.md", "# Engine and Presentation Decision\n\n" + f"ENGINE_DECISION: {engine_state}\n\n- Requested engine: `{args.engine}`\n- Presentation mode: undecided\n- User confirmation: record it before engine initialization.\n\nThis bootstrap created governance only; it did not create engine files.\n")
     write(project / "00_admin/task_card.md", "# Task Card\n\n" + f"- Mode: `{args.mode}`\n- VIBE_GATE: PASS\n- Engine decision: `{engine_state}`\n- Scope: confirmed brief and approved MVP only.\n- Out of scope: unapproved platforms, services, release, and engine initialization.\n- Source authority: Lead is the sole writer for game source, configuration, integration, Candidate, and formal delivery.\n")
-    write(project / "00_admin/validation_protocol.md", "# Validation Protocol\n\nVerify structure, runtime evidence, and Vibe Brief fit. QA and Reflection must cite one frozen buildId.\n")
+    write(project / "00_admin/validation_protocol.md", "# Validation Protocol\n\nVerify structure, runtime evidence, and Vibe Brief fit. When direct-scene coverage is in scope, Lead must provide a candidate-bound QA GM allowlist before QA; all GM invocations are logged and QA remains read-only. QA and Reflection must cite one frozen buildId.\n")
     write(project / "00_admin/execution_plan.md", "# Execution Plan\n\nConfirmed brief -> engine decision -> collaboration plan -> role packets -> Lead integration -> frozen Candidate -> QA -> Reflection -> delivery.\n")
     write(project / "00_admin/execution_log.md", f"# Execution Log\n\n- {now}: governance workspace bootstrapped; no engine project created.\n")
     write(project / "00_admin/progress_recap.md", "# Progress Recap\n\n## completed\n- Governed workspace and confirmed Vibe Brief recorded.\n\n## incomplete\n- Presentation, engine, collaboration plan, implementation, and validation gates.\n\n## last evidence\n- Bootstrap log.\n\n## next action\n- Confirm presentation and engine decision, then write collaboration_plan.md.\n")
